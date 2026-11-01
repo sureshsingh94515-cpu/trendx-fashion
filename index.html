@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TRENDX | Premium Fashion</title>
+<title>TRENDX | Premium Fashion Store</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -17,7 +17,7 @@ color:#111;
 header{
 background:#080808;
 color:white;
-padding:20px 5%;
+padding:18px 5%;
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -27,29 +27,36 @@ z-index:10;
 }
 
 .logo{
-font-size:28px;
+font-size:27px;
 font-weight:900;
 letter-spacing:3px;
 }
 
-header button{
-background:white;
-color:black;
+.nav button{
+background:transparent;
+color:white;
 border:0;
-padding:12px 18px;
+margin-left:15px;
+font-size:14px;
+}
+
+.cart-btn{
+background:white!important;
+color:black!important;
+padding:10px 15px;
 border-radius:5px;
-font-weight:bold;
 }
 
 .hero{
 background:#111;
 color:white;
 text-align:center;
-padding:90px 15px;
+padding:85px 15px;
 }
 
 .hero h1{
 font-size:45px;
+letter-spacing:2px;
 margin-bottom:15px;
 }
 
@@ -59,17 +66,31 @@ margin-bottom:25px;
 }
 
 .shop-btn{
+padding:14px 30px;
 background:white;
 color:black;
-padding:14px 25px;
 border:0;
 font-weight:bold;
-border-radius:4px;
+cursor:pointer;
+}
+
+.search-box{
+padding:25px 5%;
+text-align:center;
+}
+
+.search-box input{
+width:100%;
+max-width:500px;
+padding:15px;
+border:1px solid #ccc;
+border-radius:5px;
+font-size:16px;
 }
 
 h2{
 text-align:center;
-margin:40px 0 25px;
+margin:30px 0;
 letter-spacing:2px;
 }
 
@@ -81,18 +102,24 @@ padding:0 5%;
 }
 
 .category{
-background:#eee;
+background:#111;
+color:white;
 padding:25px 5px;
 text-align:center;
 font-weight:bold;
 border-radius:5px;
+cursor:pointer;
+}
+
+.category:hover{
+background:#444;
 }
 
 .products{
 display:grid;
 grid-template-columns:repeat(2,1fr);
 gap:18px;
-padding:15px 5%;
+padding:10px 5%;
 }
 
 .product{
@@ -114,7 +141,7 @@ margin:12px 0 7px;
 
 .price{
 font-weight:bold;
-margin-bottom:10px;
+margin:10px 0;
 }
 
 .product button{
@@ -124,6 +151,7 @@ background:#080808;
 color:white;
 border:0;
 border-radius:4px;
+cursor:pointer;
 }
 
 footer{
@@ -139,7 +167,7 @@ display:none;
 position:fixed;
 top:0;
 right:0;
-width:320px;
+width:330px;
 max-width:90%;
 height:100%;
 background:white;
@@ -150,8 +178,18 @@ overflow:auto;
 }
 
 #cart button{
-padding:10px;
-margin-top:10px;
+padding:9px;
+margin:8px 3px;
+}
+
+@media(min-width:700px){
+.products{grid-template-columns:repeat(4,1fr)}
+}
+
+@media(max-width:450px){
+.hero h1{font-size:32px}
+.categories{grid-template-columns:repeat(2,1fr)}
+.nav button{margin-left:5px;font-size:12px}
 }
 </style>
 </head>
@@ -160,7 +198,13 @@ margin-top:10px;
 
 <header>
 <div class="logo">TRENDX.</div>
-<button onclick="openCart()">🛒 CART (<span id="count">0</span>)</button>
+
+<div class="nav">
+<button onclick="showAll()">HOME</button>
+<button class="cart-btn" onclick="openCart()">
+🛒 CART (<span id="count">0</span>)
+</button>
+</div>
 </header>
 
 <section class="hero">
@@ -172,45 +216,65 @@ SHOP NOW
 </button>
 </section>
 
+<div class="search-box">
+<input type="text" id="search"
+placeholder="🔍 Search products..."
+oninput="filterProducts()">
+</div>
+
 <h2>EXPLORE CATEGORIES</h2>
 
 <div class="categories">
-<div class="category">MEN</div>
-<div class="category">WOMEN</div>
-<div class="category">SHOES</div>
-<div class="category">ACCESSORIES</div>
+<div class="category" onclick="filterCategory('Men')">MEN</div>
+<div class="category" onclick="filterCategory('Women')">WOMEN</div>
+<div class="category" onclick="filterCategory('Shoes')">SHOES</div>
+<div class="category" onclick="filterCategory('Accessories')">ACCESSORIES</div>
 </div>
 
 <h2 id="shop">TRENDING PRODUCTS</h2>
 
-<div class="products">
+<div class="products" id="products">
 
-<div class="product">
+<div class="product" data-category="Men">
 <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500" alt="T-shirt">
 <h3>Classic T-Shirt</h3>
 <p class="price">₹499</p>
 <button onclick="add('Classic T-Shirt',499)">ADD TO CART</button>
 </div>
 
-<div class="product">
+<div class="product" data-category="Shoes">
 <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500" alt="Shoes">
 <h3>Premium Sneakers</h3>
 <p class="price">₹1,299</p>
 <button onclick="add('Premium Sneakers',1299)">ADD TO CART</button>
 </div>
 
-<div class="product">
+<div class="product" data-category="Accessories">
 <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500" alt="Bag">
 <h3>Fashion Bag</h3>
 <p class="price">₹899</p>
 <button onclick="add('Fashion Bag',899)">ADD TO CART</button>
 </div>
 
-<div class="product">
+<div class="product" data-category="Accessories">
 <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500" alt="Watch">
 <h3>Classic Watch</h3>
 <p class="price">₹999</p>
 <button onclick="add('Classic Watch',999)">ADD TO CART</button>
+</div>
+
+<div class="product" data-category="Women">
+<img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500" alt="Women's fashion">
+<h3>Women's Fashion</h3>
+<p class="price">₹799</p>
+<button onclick="add('Women Fashion',799)">ADD TO CART</button>
+</div>
+
+<div class="product" data-category="Men">
+<img src="https://images.unsplash.com/photo-1516257984-b1b4d707412e?w=500" alt="Men's fashion">
+<h3>Casual Outfit</h3>
+<p class="price">₹999</p>
+<button onclick="add('Casual Outfit',999)">ADD TO CART</button>
 </div>
 
 </div>
@@ -273,6 +337,32 @@ function clearCart(){
 cart=[];
 document.getElementById('count').innerText=0;
 showCart();
+}
+
+function filterCategory(category){
+document.getElementById('search').value='';
+document.querySelectorAll('.product').forEach(product=>{
+product.style.display=
+product.dataset.category===category?'block':'none';
+});
+document.getElementById('shop').scrollIntoView();
+}
+
+function showAll(){
+document.getElementById('search').value='';
+document.querySelectorAll('.product').forEach(product=>{
+product.style.display='block';
+});
+window.scrollTo(0,0);
+}
+
+function filterProducts(){
+let query=document.getElementById('search').value.toLowerCase();
+
+document.querySelectorAll('.product').forEach(product=>{
+let name=product.querySelector('h3').innerText.toLowerCase();
+product.style.display=name.includes(query)?'block':'none';
+});
 }
 </script>
 
