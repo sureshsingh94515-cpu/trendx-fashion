@@ -6,7 +6,78 @@
 <title>TRENDX | Premium Fashion Store</title>
 
 <style>
+/* TRENDX PREMIUM DESIGN */
+body {
+  background: #f4f1eb;
+}
 
+.hero {
+  background: linear-gradient(135deg, #000, #292929, #555);
+  padding: 110px 15px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  letter-spacing: 4px;
+}
+
+.shop-btn {
+  border-radius: 30px;
+  padding: 15px 35px;
+}
+
+.search-box input {
+  border-radius: 30px;
+  padding: 17px;
+}
+
+.category {
+  border-radius: 12px;
+  padding: 30px 10px;
+  transition: 0.3s;
+}
+
+.category:hover {
+  transform: translateY(-5px);
+}
+
+.products {
+  gap: 22px;
+}
+
+.product {
+  background: white;
+  border: none;
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.09);
+  transition: 0.3s;
+}
+
+.product:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.product img {
+  height: 230px;
+  border-radius: 10px;
+}
+
+.product button {
+  border-radius: 25px;
+  padding: 13px;
+  letter-spacing: 1px;
+}
+
+@media(max-width:450px) {
+  .hero h1 {
+    font-size: 32px;
+  }
+  .product img {
+    height: 170px;
+  }
+}
 body {
   background: #f5f5f5;
   color: #111;
