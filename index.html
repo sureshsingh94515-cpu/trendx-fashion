@@ -1,209 +1,258 @@
 
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>TRENDX | Premium Fashion</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#f5f3ef;color:#171717}
-header{background:#080808;color:white;padding:18px 5%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
-.logo{font-size:27px;font-weight:900;letter-spacing:4px}
-header button{background:white;color:black;border:0;padding:11px 17px;border-radius:25px;font-weight:bold}
-.hero{background:linear-gradient(120deg,#080808,#333);color:white;text-align:center;padding:85px 15px}
-.hero h1{font-size:48px;letter-spacing:4px;margin-bottom:15px}
-.hero p{color:#ddd;margin-bottom:25px}
-.shop-btn{background:white;color:black;padding:14px 30px;border:0;border-radius:25px;font-weight:bold}
-.search{padding:30px 15px;text-align:center}
-.search input{width:90%;max-width:550px;padding:15px;border:1px solid #ccc;border-radius:30px;font-size:16px}
-.categories{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:10px 5% 35px}
-.category{background:#171717;color:white;text-align:center;padding:23px 5px;border-radius:10px;cursor:pointer;font-weight:bold}
-.category:hover{background:#555}
-.section-title{text-align:center;font-size:27px;margin:20px 0 25px;letter-spacing:2px}
-.products{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:0 5% 50px}
-.product{background:white;border-radius:13px;overflow:hidden;box-shadow:0 5px 18px #00000012;padding-bottom:15px}
-.product img{width:100%;height:260px;object-fit:cover;display:block}
-.product h3{padding:13px 12px 5px}
-.price{padding:0 12px 12px;font-weight:bold;font-size:18px}
-.product select{margin:0 12px 12px;padding:9px;border:1px solid #ccc;border-radius:6px}
-.product button{display:block;margin:0 12px;width:calc(100% - 24px);padding:12px;background:#111;color:white;border:0;border-radius:7px;font-weight:bold}
-.product button:hover{background:#444}
-#cart{display:none;background:white;margin:20px auto;padding:22px;width:90%;max-width:600px;border-radius:12px;box-shadow:0 5px 20px #0002}
-#cart h2{margin-bottom:15px}
-.cart-item{padding:12px 0;border-bottom:1px solid #ddd}
-.cart-item button{padding:5px 10px;margin-left:10px}
-.cart-actions button{padding:12px 18px;margin:12px 5px 0 0;border:0;border-radius:7px;background:#111;color:white}
-#checkout{display:none;padding:15px;background:#f4f4f4;margin-top:15px;border-radius:8px}
-footer{background:#080808;color:white;text-align:center;padding:30px 10px}
-footer p{color:#bbb;margin-top:10px}
-@media(max-width:700px){
-.products{grid-template-columns:repeat(2,1fr);gap:12px;padding:0 12px 35px}
-.product img{height:190px}
-.categories{padding-left:12px;padding-right:12px;gap:8px}
-.category{font-size:13px;padding:18px 3px}
-.hero h1{font-size:34px}
-.logo{font-size:22px}
+*{box-sizing:border-box}
+body{margin:0;background:#f6f5f2;color:#151515;font-family:Arial,sans-serif}
+button,input,select{font:inherit;cursor:pointer}
+.top{background:#111;color:#ddd;text-align:center;padding:9px;font-size:11px;letter-spacing:2px}
+header{height:72px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 5%;position:sticky;top:0;z-index:5;border-bottom:1px solid #eee}
+.logo{font-size:27px;font-weight:900;letter-spacing:5px}
+.logo b{color:#b99a62}
+header button{background:#111;color:#fff;border:0;border-radius:25px;padding:12px 18px}
+.hero{padding:85px 8%;color:white;background:linear-gradient(90deg,#000c,#0002),url('https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1600') center/cover}
+.hero small{letter-spacing:4px;color:#d8bd8b}
+.hero h1{font-size:clamp(42px,7vw,76px);margin:18px 0;line-height:1}
+.hero p{max-width:420px;line-height:1.7}
+.hero button{padding:15px 25px;border:0;background:white;letter-spacing:2px;font-weight:bold;margin-top:15px}
+.benefits{display:flex;justify-content:space-around;text-align:center;background:white;padding:22px 5%;font-size:11px;letter-spacing:1px}
+.section{padding:45px 5%}
+.heading{text-align:center;margin-bottom:25px}
+.heading small{color:#b99a62;letter-spacing:3px}
+.heading h2{font-size:29px;letter-spacing:2px}
+.cats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.cat{height:155px;position:relative;overflow:hidden;cursor:pointer}
+.cat img{width:100%;height:100%;object-fit:cover}
+.cat span{position:absolute;bottom:0;left:0;right:0;padding:25px 8px 13px;color:white;font-weight:bold;font-size:12px;letter-spacing:1px;background:linear-gradient(transparent,#000b)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.toolbar input{flex:1;min-width:210px;padding:14px 18px;border:1px solid #ddd;border-radius:30px}
+.toolbar select{padding:12px;border:1px solid #ddd;border-radius:25px;background:white}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:23px}
+.chip{padding:10px 14px;border:1px solid #ddd;border-radius:25px;background:white;font-size:10px;letter-spacing:1px}
+.chip.active,.chip:hover{background:#111;color:white}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}
+.card{background:white;border:1px solid #eee;transition:.2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 25px #0001}
+.card img{width:100%;height:225px;object-fit:cover;display:block;background:#eee}
+.info{padding:13px}
+.tag{font-size:9px;color:#b99a62;letter-spacing:1.5px}
+.info h3{font-size:14px;margin:7px 0}
+.price{font-weight:bold;margin:10px 0 13px}
+.info button{width:100%;border:0;background:#111;color:white;padding:12px;font-size:10px;letter-spacing:1.5px}
+.info button:hover{background:#b99a62}
+.empty{text-align:center;padding:40px;grid-column:1/-1;color:#777}
+footer{background:#111;color:#fff;padding:35px 7%;line-height:1.7}
+footer p{color:#aaa;font-size:12px}
+.overlay{display:none;position:fixed;inset:0;background:#0008;z-index:9}
+.drawer{position:fixed;right:0;top:0;height:100%;width:min(420px,100%);background:#fff;z-index:10;padding:22px;overflow:auto;transform:translateX(105%);transition:.25s}
+.drawer.open{transform:translateX(0)}
+.drawerhead{display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding-bottom:14px}
+.drawerhead button{border:0;padding:8px}
+.item{display:flex;gap:10px;padding:13px 0;border-bottom:1px solid #eee;align-items:center}
+.item img{width:58px;height:65px;object-fit:cover}
+.item div{flex:1;font-size:12px}
+.item button{border:0;background:none;color:#a33}
+.total{display:flex;justify-content:space-between;padding:20px 0;font-weight:bold}
+.checkout{width:100%;padding:14px;background:#111;color:white;border:0;letter-spacing:2px}
+.note{font-size:11px;color:#777;line-height:1.5}
+@media(max-width:850px){
+.grid{grid-template-columns:repeat(3,1fr)}
+.cats{grid-template-columns:repeat(3,1fr)}
 }
-@media(max-width:380px){.products{grid-template-columns:1fr}}
+@media(max-width:600px){
+header{height:62px;padding:0 4%}
+.logo{font-size:22px}
+.hero{padding:65px 7%}
+.benefits{font-size:9px;padding:18px 2%}
+.section{padding:35px 4%}
+.cats{grid-template-columns:repeat(2,1fr)}
+.cat{height:135px}
+.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.card img{height:175px}
+.info{padding:10px}
+.info h3{font-size:12px}
+}
 </style>
 </head>
 <body>
-
+<div class="top">NEW SEASON • NEW STYLE • DISCOVER TRENDX</div>
 <header>
-<div class="logo">TRENDX</div>
-<button onclick="openCart()">🛒 CART (<span id="count">0</span>)</button>
+<div class="logo">TREND<b>X</b></div>
+<button onclick="openCart()">🛍 CART (<span id="count">0</span>)</button>
 </header>
 
 <section class="hero">
-<h1>DEFINE YOUR STYLE.</h1>
-<p>Discover the latest fashion trends.</p>
-<button class="shop-btn" onclick="document.getElementById('shop').scrollIntoView()">SHOP NOW</button>
+<small>THE NEW COLLECTION</small>
+<h1>STYLE IS<br>YOUR STORY.</h1>
+<p>Discover everyday essentials, statement pieces and accessories curated for your personal style.</p>
+<button onclick="document.getElementById('shop').scrollIntoView()">SHOP COLLECTION</button>
 </section>
 
-<div class="search">
-<input id="search" placeholder="🔍 Search products..." oninput="filterProducts()">
+<div class="benefits">
+<div>CURATED STYLE<br><span style="color:#888">Fresh picks for every day</span></div>
+<div>NEW ARRIVALS<br><span style="color:#888">Explore latest looks</span></div>
+<div>SHOP YOUR WAY<br><span style="color:#888">Browse the collection</span></div>
 </div>
 
-<div class="categories">
-<div class="category" onclick="filterCategory('Men')">MEN</div>
-<div class="category" onclick="filterCategory('Women')">WOMEN</div>
-<div class="category" onclick="filterCategory('Shoes')">SHOES</div>
-<div class="category" onclick="filterCategory('Accessories')">ACCESSORIES</div>
+<section class="section" id="categories">
+<div class="heading"><small>FIND YOUR LOOK</small><h2>SHOP BY CATEGORY</h2></div>
+<div class="cats">
+<div class="cat" onclick="choose('Men Fashion')"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500"><span>MEN FASHION</span></div>
+<div class="cat" onclick="choose('Women Fashion')"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500"><span>WOMEN FASHION</span></div>
+<div class="cat" onclick="choose('Men Sneakers')"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500"><span>MEN SNEAKERS</span></div>
+<div class="cat" onclick="choose('Women Sneakers')"><img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=500"><span>WOMEN SNEAKERS</span></div>
+<div class="cat" onclick="choose('Accessories & Watches')"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500"><span>ACCESSORIES & WATCHES</span></div>
 </div>
+</section>
 
-<h2 class="section-title" id="shop">TRENDING PRODUCTS</h2>
-
-<div class="products" id="products">
-
-<div class="product" data-category="Men">
-<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600" alt="Classic T-shirt">
-<h3>Classic T-Shirt</h3><div class="price">₹499</div>
-<select class="size"><option value="S">Size S</option><option value="M">Size M</option><option value="L">Size L</option><option value="XL">Size XL</option></select>
-<button onclick="add('Classic T-Shirt',499,this)">ADD TO CART</button>
+<section class="section" id="shop">
+<div class="heading"><small>THE TRENDX EDIT</small><h2>SHOP ALL PRODUCTS</h2></div>
+<div class="toolbar">
+<input id="search" placeholder="🔍 Search products..." oninput="render()">
+<select id="sort" onchange="render()">
+<option value="featured">Sort: Featured</option>
+<option value="low">Price: Low to High</option>
+<option value="high">Price: High to Low</option>
+<option value="name">Name: A to Z</option>
+</select>
 </div>
-
-<div class="product" data-category="Shoes">
-<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600" alt="Sneakers">
-<h3>Premium Sneakers</h3><div class="price">₹1299</div>
-<select class="size"><option value="6">UK 6</option><option value="7">UK 7</option><option value="8">UK 8</option><option value="9">UK 9</option></select>
-<button onclick="add('Premium Sneakers',1299,this)">ADD TO CART</button>
-</div>
-
-<div class="product" data-category="Accessories">
-<img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600" alt="Fashion Bag">
-<h3>Fashion Bag</h3><div class="price">₹899</div>
-<button onclick="add('Fashion Bag',899,this)">ADD TO CART</button>
-</div>
-
-<div class="product" data-category="Accessories">
-<img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600" alt="Classic Watch">
-<h3>Classic Watch</h3><div class="price">₹999</div>
-<button onclick="add('Classic Watch',999,this)">ADD TO CART</button>
-</div>
-
-<div class="product" data-category="Women">
-<img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600" alt="Women's Fashion">
-<h3>Women's Fashion</h3><div class="price">₹1499</div>
-<select class="size"><option value="S">Size S</option><option value="M">Size M</option><option value="L">Size L</option><option value="XL">Size XL</option></select>
-<button onclick="add('Women Fashion',1499,this)">ADD TO CART</button>
-</div>
-
-<div class="product" data-category="Men">
-<img src="https://images.unsplash.com/photo-1516257984-b1b4d707412e?w=600" alt="Casual Outfit">
-<h3>Casual Outfit</h3><div class="price">₹1199</div>
-<select class="size"><option value="S">Size S</option><option value="M">Size M</option><option value="L">Size L</option><option value="XL">Size XL</option></select>
-<button onclick="add('Casual Outfit',1199,this)">ADD TO CART</button>
-</div>
-
-</div>
-
-<section id="cart">
-<h2>YOUR SHOPPING CART</h2>
-<div id="items">Your cart is empty.</div>
-<h3 id="total">Total: ₹0</h3>
-<div class="cart-actions">
-<button onclick="showCheckout()">CHECKOUT</button>
-<button onclick="closeCart()">CONTINUE SHOPPING</button>
-<button onclick="clearCart()">CLEAR CART</button>
-</div>
-<div id="checkout">
-<h3>Demo Checkout</h3>
-<p>Your cart total is shown above. This is a preview only. No real order or payment will be processed.</p>
-<button onclick="alert('Demo only! Real ordering is not available yet.')">PLACE DEMO ORDER</button>
-</div>
+<div class="chips" id="chips"></div>
+<div class="grid" id="grid"></div>
 </section>
 
 <footer>
 <h2>TRENDX</h2>
-<p>Style That Defines You.</p>
-<p>© 2026 TRENDX. All Rights Reserved.</p>
+<p>Style is your story. Fashion, footwear and accessories for every day.</p>
+<p>This is a demonstration storefront. Real orders and payments are not enabled.</p>
+© 2026 TRENDX
 </footer>
 
-<script>
-let cart=[];
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<aside class="drawer" id="drawer">
+<div class="drawerhead"><h2>YOUR BAG</h2><button onclick="closeCart()">✕</button></div>
+<div id="items"></div>
+<div class="total"><span>Subtotal</span><span id="total">₹0</span></div>
+<p class="note">Demo cart only. No real order or payment will be taken.</p>
+<button class="checkout" onclick="checkout()">DEMO CHECKOUT</button>
+</aside>
 
-function add(name,price,button){
-let card=button.closest('.product');
-let size=card.querySelector('.size');
-cart.push({name,price,size:size?size.value:'Standard'});
-document.getElementById('count').innerText=cart.length;
-alert(name+' added to cart!');
+<script>
+const groups={
+'Men Fashion':['Classic Cotton T-Shirt','Oversized Graphic Tee','Polo Shirt','Casual Denim Jeans','Slim Fit Jeans','Hoodie','Formal Shirt','Linen Summer Shirt','Casual Jacket','Jogger Pants','Classic Sweatshirt','Printed T-Shirt','Smart Trousers','Winter Jacket','Casual Shorts'],
+'Women Fashion':['Floral Summer Dress','Evening Dress','Casual Top','High Waist Jeans','Women Hoodie','Classic Blazer','Co-ord Set','Pleated Skirt','Casual Shirt','Ethnic Kurti','Wide Leg Trousers','Cardigan','Party Wear Top','Maxi Dress','Summer Jumpsuit'],
+'Men Sneakers':['Street Sneakers','White Everyday Sneakers','Running Shoes','Retro High Tops','Black Sports Sneakers','Minimal Low Tops','Skate Sneakers','Chunky Sole Sneakers','Canvas Sneakers','Training Shoes','Court Sneakers','Slip-on Sneakers','Outdoor Sneakers','Lightweight Trainers','Classic High Tops'],
+'Women Sneakers':['Women Fashion Sneakers','White Platform Sneakers','Pink Casual Sneakers','Women Running Shoes','Retro Women Sneakers','Canvas Slip-ons','Chunky Trainers','Walking Shoes','Sporty Pink Trainers','Minimal White Shoes','Gym Shoes','Fashion Trainers','Everyday Comfort Sneakers','Classic Court Shoes','Casual Slip-ons'],
+'Accessories & Watches':['Classic Analog Watch','Minimal Gold Watch','Leather Strap Watch','Fashion Sunglasses','Everyday Backpack','Shoulder Bag','Leather Wallet','Minimal Bracelet','Fashion Necklace','Everyday Cap','Travel Duffel Bag','Classic Belt','Premium Tote Bag','Round Dial Watch','Fashion Ring Set']
+};
+
+const prices=[499,599,799,1199,1299,999,899,899,1499,899,1099,649,1299,1899,699];
+
+const photos={
+'Men Fashion':'photo-1521572163474-6864f9cf17ab',
+'Women Fashion':'photo-1496747611176-843222e1e57c',
+'Men Sneakers':'photo-1542291026-7eec264c27ff',
+'Women Sneakers':'photo-1543163521-1bf539c55dd2',
+'Accessories & Watches':'photo-1523275335684-37898b6baf30'
+};
+
+const products=[];
+Object.keys(groups).forEach(cat=>{
+groups[cat].forEach((name,i)=>{
+products.push({id:products.length,name,cat,price:prices[i],photo:photos[cat]});
+});
+});
+
+let active='All',cart=[];
+const cats=['All',...Object.keys(groups)];
+
+function renderChips(){
+document.getElementById('chips').innerHTML=cats.map(c=>
+`<button class="chip ${active===c?'active':''}" onclick="choose('${c}')">${c.toUpperCase()}</button>`
+).join('');
+}
+
+function choose(c){
+active=c;
+renderChips();
+render();
+document.getElementById('shop').scrollIntoView({behavior:'smooth'});
+}
+
+function render(){
+let q=document.getElementById('search').value.toLowerCase();
+let list=products.filter(p=>(active==='All'||p.cat===active)&&(p.name+' '+p.cat).toLowerCase().includes(q));
+let s=document.getElementById('sort').value;
+if(s==='low')list.sort((a,b)=>a.price-b.price);
+if(s==='high')list.sort((a,b)=>b.price-a.price);
+if(s==='name')list.sort((a,b)=>a.name.localeCompare(b.name));
+
+document.getElementById('grid').innerHTML=list.length?list.map(p=>
+`<article class="card">
+<img loading="lazy" src="https://images.unsplash.com/${p.photo}?auto=format&fit=crop&w=650&q=80" alt="${p.name}">
+<div class="info">
+<div class="tag">${p.cat.toUpperCase()}</div>
+<h3>${p.name}</h3>
+<div class="price">₹${p.price.toLocaleString('en-IN')}</div>
+<button onclick="add(${p.id})">ADD TO BAG</button>
+</div></article>`
+).join(''):'<div class="empty">No products found. Try another search.</div>';
+}
+
+function add(id){
+let p=products[id],x=cart.find(x=>x.id===id);
+if(x)x.qty++;
+else cart.push({...p,qty:1});
+update();
+openCart();
+}
+
+function update(){
+document.getElementById('count').textContent=cart.reduce((n,x)=>n+x.qty,0);
+document.getElementById('items').innerHTML=cart.length?cart.map(x=>
+`<div class="item">
+<img src="https://images.unsplash.com/${x.photo}?w=150" alt="">
+<div><b>${x.name}</b><br>₹${x.price} × ${x.qty}<br>
+<button onclick="change(${x.id},-1)">−</button>
+<button onclick="change(${x.id},1)">+</button></div>
+<button onclick="removeItem(${x.id})">Remove</button>
+</div>`
+).join(''):'<p>Your bag is empty.</p>';
+document.getElementById('total').textContent='₹'+cart.reduce((n,x)=>n+x.price*x.qty,0).toLocaleString('en-IN');
+}
+
+function change(id,n){
+let x=cart.find(x=>x.id===id);
+if(x){x.qty+=n;if(x.qty<1)cart=cart.filter(y=>y.id!==id)}
+update();
+}
+
+function removeItem(id){
+cart=cart.filter(x=>x.id!==id);
+update();
 }
 
 function openCart(){
-document.getElementById('cart').style.display='block';
-showCart();
-document.getElementById('cart').scrollIntoView();
+document.getElementById('overlay').style.display='block';
+document.getElementById('drawer').classList.add('open');
 }
 
 function closeCart(){
-document.getElementById('cart').style.display='none';
+document.getElementById('overlay').style.display='none';
+document.getElementById('drawer').classList.remove('open');
 }
 
-function showCart(){
-let html='',total=0;
-cart.forEach((item,index)=>{
-total+=item.price;
-html+=`<div class="cart-item">${item.name} | Size: ${item.size} | ₹${item.price} <button onclick="removeItem(${index})">Remove</button></div>`;
-});
-document.getElementById('items').innerHTML=html||'Your cart is empty.';
-document.getElementById('total').innerText='Total: ₹'+total;
+function checkout(){
+alert(cart.length?'This is a demo store. Real checkout and payment are not available yet.':'Your bag is empty.');
 }
 
-function removeItem(index){
-cart.splice(index,1);
-document.getElementById('count').innerText=cart.length;
-showCart();
-}
-
-function clearCart(){
-cart=[];
-document.getElementById('count').innerText=0;
-showCart();
-document.getElementById('checkout').style.display='none';
-}
-
-function showCheckout(){
-if(cart.length===0){alert('Your cart is empty!');return;}
-document.getElementById('checkout').style.display='block';
-}
-
-function filterCategory(category){
-document.getElementById('search').value='';
-document.querySelectorAll('.product').forEach(product=>{
-product.style.display=product.dataset.category===category?'block':'none';
-});
-document.getElementById('shop').scrollIntoView();
-}
-
-function filterProducts(){
-let query=document.getElementById('search').value.toLowerCase();
-document.querySelectorAll('.product').forEach(product=>{
-let name=product.querySelector('h3').innerText.toLowerCase();
-product.style.display=name.includes(query)?'block':'none';
-});
-}
+renderChips();
+render();
+update();
 </script>
 </body>
 </html>
