@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRENDX | Premium Fashion</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+font-family:Arial,sans-serif;
+background:#fff;
+color:#111;
+}
+
+header{
+background:#080808;
+color:white;
+padding:20px 5%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:10;
+}
+
+.logo{
+font-size:28px;
+font-weight:900;
+letter-spacing:3px;
+}
+
+header button{
+background:white;
+color:black;
+border:0;
+padding:12px 18px;
+border-radius:5px;
+font-weight:bold;
+}
+
+.hero{
+background:#111;
+color:white;
+text-align:center;
+padding:90px 15px;
+}
+
+.hero h1{
+font-size:45px;
+margin-bottom:15px;
+}
+
+.hero p{
+color:#ccc;
+margin-bottom:25px;
+}
+
+.shop-btn{
+background:white;
+color:black;
+padding:14px 25px;
+border:0;
+font-weight:bold;
+border-radius:4px;
+}
+
+h2{
+text-align:center;
+margin:40px 0 25px;
+letter-spacing:2px;
+}
+
+.categories{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px;
+padding:0 5%;
+}
+
+.category{
+background:#eee;
+padding:25px 5px;
+text-align:center;
+font-weight:bold;
+border-radius:5px;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:18px;
+padding:15px 5%;
+}
+
+.product{
+border:1px solid #ddd;
+padding:10px;
+border-radius:7px;
+}
+
+.product img{
+width:100%;
+height:190px;
+object-fit:cover;
+border-radius:5px;
+}
+
+.product h3{
+margin:12px 0 7px;
+}
+
+.price{
+font-weight:bold;
+margin-bottom:10px;
+}
+
+.product button{
+width:100%;
+padding:12px;
+background:#080808;
+color:white;
+border:0;
+border-radius:4px;
+}
+
+footer{
+background:#080808;
+color:white;
+text-align:center;
+padding:30px;
+margin-top:40px;
+}
+
+#cart{
+display:none;
+position:fixed;
+top:0;
+right:0;
+width:320px;
+max-width:90%;
+height:100%;
+background:white;
+z-index:20;
+padding:20px;
+box-shadow:0 0 20px #777;
+overflow:auto;
+}
+
+#cart button{
+padding:10px;
+margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">TRENDX.</div>
+<button onclick="openCart()">🛒 CART (<span id="count">0</span>)</button>
+</header>
+
+<section class="hero">
+<h1>DEFINE YOUR STYLE.</h1>
+<p>Discover the latest fashion trends.</p>
+<button class="shop-btn"
+onclick="document.getElementById('shop').scrollIntoView()">
+SHOP NOW
+</button>
+</section>
+
+<h2>EXPLORE CATEGORIES</h2>
+
+<div class="categories">
+<div class="category">MEN</div>
+<div class="category">WOMEN</div>
+<div class="category">SHOES</div>
+<div class="category">ACCESSORIES</div>
+</div>
+
+<h2 id="shop">TRENDING PRODUCTS</h2>
+
+<div class="products">
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500" alt="T-shirt">
+<h3>Classic T-Shirt</h3>
+<p class="price">₹499</p>
+<button onclick="add('Classic T-Shirt',499)">ADD TO CART</button>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500" alt="Shoes">
+<h3>Premium Sneakers</h3>
+<p class="price">₹1,299</p>
+<button onclick="add('Premium Sneakers',1299)">ADD TO CART</button>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500" alt="Bag">
+<h3>Fashion Bag</h3>
+<p class="price">₹899</p>
+<button onclick="add('Fashion Bag',899)">ADD TO CART</button>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500" alt="Watch">
+<h3>Classic Watch</h3>
+<p class="price">₹999</p>
+<button onclick="add('Classic Watch',999)">ADD TO CART</button>
+</div>
+
+</div>
+
+<div id="cart">
+<button onclick="closeCart()">✖ CLOSE</button>
+<h2>YOUR CART</h2>
+<div id="items">Your cart is empty.</div>
+<h3 id="total">Total: ₹0</h3>
+<button onclick="clearCart()">CLEAR CART</button>
+</div>
+
+<footer>
+<h2>TRENDX.</h2>
+<p>Wear Your Style. Define Your Trend.</p>
+<p>© 2026 TRENDX. All Rights Reserved.</p>
+</footer>
+
+<script>
+let cart=[];
+
+function add(name,price){
+cart.push({name,price});
+document.getElementById('count').innerText=cart.length;
+alert(name+' added to cart!');
+}
+
+function openCart(){
+document.getElementById('cart').style.display='block';
+showCart();
+}
+
+function closeCart(){
+document.getElementById('cart').style.display='none';
+}
+
+function showCart(){
+let html='';
+let total=0;
+
+cart.forEach((item,index)=>{
+total+=item.price;
+html+=`<p>${item.name} - ₹${item.price}
+<button onclick="removeItem(${index})">Remove</button></p>`;
+});
+
+document.getElementById('items').innerHTML=
+html||'Your cart is empty.';
+
+document.getElementById('total').innerText='Total: ₹'+total;
+}
+
+function removeItem(index){
+cart.splice(index,1);
+document.getElementById('count').innerText=cart.length;
+showCart();
+}
+
+function clearCart(){
+cart=[];
+document.getElementById('count').innerText=0;
+showCart();
+}
+</script>
+
+</body>
+  </html>
